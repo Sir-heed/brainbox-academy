@@ -1,0 +1,551 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="">
+    
+<!-- Mirrored from themepure.net/template/educal/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 02 Mar 2022 12:59:24 GMT -->
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Educal – Online Learning and Education HTML5 Template </title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="manifest" href="{% url 'authentication:site' %}">
+		
+		<!-- Place favicon.ico in the root directory -->
+        <!-- <link rel="shortcut icon" type="image/x-icon" href="{% static 'authentication/img/logo/favicon.png' %}"> -->
+
+		<!-- CSS here -->
+        <link rel="stylesheet" href="{% static 'authentication/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'authentication/css/animate.min.css' %}">
+        <link rel="stylesheet" href="{% static 'authentication/css/owl.carousel.min.css' %}">
+        <link rel="stylesheet" href="{% static 'authentication/css/magnific-popup.css' %}">
+        <link rel="stylesheet" href="{% static 'authentication/css/fontAwesome5Pro.css' %}">
+        <link rel="stylesheet" href="{% static 'authentication/css/default.css' %}">
+        <link rel="stylesheet" href="{% static 'authentication/css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'authentication/css/responsive.css' %}">
+    </head>
+    <body>
+
+		<!-- preloader  -->
+		<div id="preloader">
+			<div id="ctn-preloader" class="ctn-preloader">
+				<div class="animation-preloader">
+					<div class="spinner"></div>
+				</div>
+				<div class="loader">
+					<div class="row">
+						<div class="col-3 loader-section section-left">
+							<div class="bg"></div>
+						</div>
+						<div class="col-3 loader-section section-left">
+							<div class="bg"></div>
+						</div>
+						<div class="col-3 loader-section section-right">
+							<div class="bg"></div>
+						</div>
+						<div class="col-3 loader-section section-right">
+							<div class="bg"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- preloader end -->
+
+
+        <header>
+			<div id="header-sticky" class="header-area pt-15 pb-15">
+				<div class="container">
+					<div class="row align-items-center">
+						<div class="col-lg-6 col-md-5 col-6">
+							<div class="logo">
+								<a href="#"><img src="{% static 'authentication/img/logo/logo.png' %}" alt="logo" /></a>
+							</div>
+						</div>
+						<div class="col-lg-3 d-none d-lg-block">
+							<div class="header-menu text-right">
+								<ul>
+									<li><a href="#demos">Demos</a></li>
+									<li><a href="#pages">Inner Pages</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-7 col-6">
+							<div class="purchase-link float-right">
+								<a href="#" target="_blank">Purchase Now</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<!-- hero area start -->
+		<section class="hero__area hero__height hero__height-2 d-flex align-items-center blue-bg-3 p-relative fix  pl-50 pr-50">
+			<div class="hero__shape">
+				<img class="hero-1-circle" src="{% static 'authentication/img/shape/hero/hero-1-circle.png' %}" alt="">
+				<img class="hero-1-circle-2" src="{% static 'authentication/img/shape/hero/hero-1-circle-2.png' %}" alt="">
+				<img class="hero-1-dot-2" src="{% static 'authentication/img/shape/hero/hero-1-dot-2.png' %}" alt="">
+			</div>
+			<div class="container">
+				<div class="hero__content-wrapper mt-90">
+					<div class="row align-items-center">
+						<div class="col-xl-7 col-lg-6 col-md-6">
+						<div class="hero__content hero__content-2 p-relative z-index-1">
+							<h3 class="hero__title hero__title-2">
+								Educal – Education <br>
+								<span class="yellow-shape">HTML5 <img src="{% static 'authentication/img/shape/yellow-bg.png' %}" alt="yellow-shape"> </span> 
+								Template
+							</h3>
+							<p>Suitable for all educational web, LMS, Training Center, Courses Hub, College, Academy, University, School, Kindergarten, etc. </p>
+							<div class="home-arrow wow fadeInUp " data-wow-delay=".7s">
+								<a href="#demos" class="smoth-scroll">
+									Explore Demos  <i class="far fa-arrow-down"></i>
+								</a>
+							</div>
+						</div>
+						</div>
+						<div class="col-xl-5 col-lg-6 col-md-6">
+						<div class="hero__thumb-wrapper mb--120">
+							<div class="hero__thumb-2 scene">
+								<img class="hero-big" src="{% static 'authentication/img/hero/hero-2/hero.png' %}" alt="">
+								<img class="hero-shape-purple" src="{% static 'authentication/img/hero/hero-2/hero-shape-purple.png' %}" alt="">
+							</div>
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- hero area end -->
+
+
+		<div id="demos" class="ready-demos gray-bg pt-80 pb-80">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 offset-lg-3">
+						<div class="ready-wrapper text-center wow fadeInUp" data-wow-delay=".3s">
+							<h4>Stunning <span>Home</span> pages</h4>
+							<p>Choose a homepage to start navigating educal. Build strong & impressive websites
+							using educal premade templates.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="demo-area pt-90 pb-40">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-4 col-md-6 col-sm-6">
+						<div class="demo-wrapper text-center wow fadeInUp" data-wow-delay=".3s">
+							<div class="demo-thumb">
+								<a href="educal/{% url 'authentication:index' %}" target="_blank">
+									<img src="{% static 'authentication/img/demos/home-1.jpg' %}" alt="" />
+									<span>View Demo</span>
+								</a>
+							</div>
+							<div class="demo-title">
+								<h4><a href="educal/{% url 'authentication:index' %}" target="_blank">Home Style 1</a></h4>
+							</div>
+						</div>
+					</div>
+					<!-- <div class="col-lg-4 col-md-6 col-sm-6">
+						<div class="demo-wrapper text-center wow fadeInUp" data-wow-delay=".5s">
+							<div class="demo-thumb">
+								<a href="educal/index-2.html" target="_blank">
+									<img src="{% static 'authentication/img/demos/home-2.jpg' %}" alt="" />
+									<span>View Demo</span>
+								</a>
+							</div>
+							<div class="demo-title">
+								<h4><a href="educal/index-2.html" target="_blank">Home Style 2</a></h4>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-6" >
+						<div class="demo-wrapper text-center wow fadeInUp" data-wow-delay=".7s">
+							<div class="demo-thumb">
+								<a href="educal/index-3.html" target="_blank">
+									<img src="{% static 'authentication/img/demos/home-3.jpg' %}" alt="" />
+									<span>View Demo</span>
+								</a>
+							</div>
+							<div class="demo-title">
+								<h4><a href="educal/index-3.html" target="_blank">Home Style 3</a></h4>
+							</div>
+						</div>
+					</div> -->
+				</div>
+			</div>
+		</div>
+
+		<div id="pages" class="ready-demos gray-bg pt-80 pb-80">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 offset-lg-3">
+						<div class="ready-wrapper text-center wow fadeInUp" data-wow-delay=".3s">
+							<h4>Stunning <span>Inner</span> pages</h4>
+							<p>Choose a Innerpage to start navigating educal. Build strong & impressive websites using educal premade templates.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="demo-area pt-90 pb-40">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-4 col-md-6 col-sm-6">
+						<div class="demo-wrapper text-center wow fadeInUp" data-wow-delay=".3s">
+							<div class="demo-thumb">
+								<a href="educal/{% url 'authentication:about' %}" target="_blank">
+									<img src="{% static 'authentication/img/demos/about.jpg' %}" alt="" />
+									<span>View Demo</span>
+								</a>
+							</div>
+							<div class="demo-title">
+								<h4><a href="https://www.devsnews.com/template/educal/{% url 'authentication:about' %}" target="_blank">About Us</a></h4>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-6">
+						<div class="demo-wrapper text-center wow fadeInUp" data-wow-delay=".3s">
+							<div class="demo-thumb">
+								<a href="educal/{% url 'authentication:course-grid' %}" target="_blank">
+									<img src="{% static 'authentication/img/demos/course-grid.jpg' %}" alt="" />
+									<span>View Demo</span>
+								</a>
+							</div>
+							<div class="demo-title">
+								<h4><a href="educal/{% url 'authentication:course-grid' %}" target="_blank">Course</a></h4>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-6">
+						<div class="demo-wrapper text-center wow fadeInUp" data-wow-delay=".3s">
+							<div class="demo-thumb">
+								<a href="educal/{% url 'authentication:course-list' %}" target="_blank">
+									<img src="{% static 'authentication/img/demos/course-list.jpg' %}" alt="" />
+									<span>View Demo</span>
+								</a>
+							</div>
+							<div class="demo-title">
+								<h4><a href="educal/{% url 'authentication:course-list' %}" target="_blank">Course List</a></h4>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-6">
+						<div class="demo-wrapper text-center wow fadeInUp" data-wow-delay=".3s">
+							<div class="demo-thumb">
+								<a href="educal/{% url 'authentication:course-sidebar' %}" target="_blank">
+									<img src="{% static 'authentication/img/demos/course-sidebar.jpg' %}" alt="" />
+									<span>View Demo</span>
+								</a>
+							</div>
+							<div class="demo-title">
+								<h4><a href="educal/{% url 'authentication:course-sidebar' %}" target="_blank">Course Sidebar</a></h4>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-6">
+						<div class="demo-wrapper text-center wow fadeInUp" data-wow-delay=".3s">
+							<div class="demo-thumb">
+								<a href="educal/{% url 'authentication:course-details' %}" target="_blank">
+									<img src="{% static 'authentication/img/demos/course-details.jpg' %}" alt="" />
+									<span>View Demo</span>
+								</a>
+							</div>
+							<div class="demo-title">
+								<h4><a href="educal/{% url 'authentication:course-details' %}" target="_blank">Course Details</a></h4>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-6">
+						<div class="demo-wrapper text-center wow fadeInUp" data-wow-delay=".3s">
+							<div class="demo-thumb">
+								<a href="educal/{% url 'authentication:instructor' %}" target="_blank">
+									<img src="{% static 'authentication/img/demos/instructor.jpg' %}" alt="" />
+									<span>View Demo</span>
+								</a>
+							</div>
+							<div class="demo-title">
+								<h4><a href="educal/{% url 'authentication:instructor' %}" target="_blank">Instructor</a></h4>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-6">
+						<div class="demo-wrapper text-center wow fadeInUp" data-wow-delay=".3s">
+							<div class="demo-thumb">
+								<a href="educal/{% url 'authentication:instructor-details' %}" target="_blank">
+									<img src="{% static 'authentication/img/demos/instructor-details.jpg' %}" alt="" />
+									<span>View Demo</span>
+								</a>
+							</div>
+							<div class="demo-title">
+								<h4><a href="educal/{% url 'authentication:instructor-details' %}" target="_blank">Instructor Details</a></h4>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-6">
+						<div class="demo-wrapper text-center wow fadeInUp" data-wow-delay=".3s">
+							<div class="demo-thumb">
+								<a href="educal/{% url 'authentication:blog' %}" target="_blank">
+									<img src="{% static 'authentication/img/demos/blog.jpg' %}" alt="" />
+									<span>View Demo</span>
+								</a>
+							</div>
+							<div class="demo-title">
+								<h4><a href="educal/{% url 'authentication:blog' %}" target="_blank">Blog</a></h4>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-6">
+						<div class="demo-wrapper text-center wow fadeInUp" data-wow-delay=".3s">
+							<div class="demo-thumb">
+								<a href="educal/{% url 'authentication:blog-details' %}" target="_blank">
+									<img src="{% static 'authentication/img/demos/blog-details.jpg' %}" alt="" />
+									<span>View Demo</span>
+								</a>
+							</div>
+							<div class="demo-title">
+								<h4><a href="educal/{% url 'authentication:blog-details' %}" target="_blank">Blog Details</a></h4>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-6">
+						<div class="demo-wrapper text-center wow fadeInUp" data-wow-delay=".3s">
+							<div class="demo-thumb">
+								<a href="educal/{% url 'authentication:event-details' %}" target="_blank">
+									<img src="{% static 'authentication/img/demos/event-details.jpg' %}" alt="" />
+									<span>View Demo</span>
+								</a>
+							</div>
+							<div class="demo-title">
+								<h4><a href="educal/{% url 'authentication:event-details' %}" target="_blank">Event Details</a></h4>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-6">
+						<div class="demo-wrapper text-center wow fadeInUp" data-wow-delay=".3s">
+							<div class="demo-thumb">
+								<a href="educal/{% url 'authentication:error' %}" target="_blank">
+									<img src="{% static 'authentication/img/demos/error.jpg' %}" alt="" />
+									<span>View Demo</span>
+								</a>
+							</div>
+							<div class="demo-title">
+								<h4><a href="educal/{% url 'authentication:error' %}" target="_blank">Error</a></h4>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-6">
+						<div class="demo-wrapper text-center wow fadeInUp" data-wow-delay=".3s">
+							<div class="demo-thumb">
+								<a href="educal/{% url 'authentication:sign-in' %}" target="_blank">
+									<img src="{% static 'authentication/img/demos/sign-in.jpg' %}" alt="" />
+									<span>View Demo</span>
+								</a>
+							</div>
+							<div class="demo-title">
+								<h4><a href="educal/{% url 'authentication:sign-in' %}" target="_blank">Sign In</a></h4>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-6">
+						<div class="demo-wrapper text-center wow fadeInUp" data-wow-delay=".3s">
+							<div class="demo-thumb">
+								<a href="educal/{% url 'authentication:sign-up' %}" target="_blank">
+									<img src="{% static 'authentication/img/demos/sign-up.jpg' %}" alt="" />
+									<span>View Demo</span>
+								</a>
+							</div>
+							<div class="demo-title">
+								<h4><a href="educal/{% url 'authentication:sign-up' %}" target="_blank">Sign Up</a></h4>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-6">
+						<div class="demo-wrapper text-center wow fadeInUp" data-wow-delay=".3s">
+							<div class="demo-thumb">
+								<a href="educal/{% url 'authentication:contact' %}" target="_blank">
+									<img src="{% static 'authentication/img/demos/contact.jpg' %}" alt="" />
+									<span>View Demo</span>
+								</a>
+							</div>
+							<div class="demo-title">
+								<h4><a href="educal/{% url 'authentication:contact' %}" target="_blank">Contact</a></h4>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="ready-demos gray-bg pt-80 pb-80">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 offset-lg-3">
+						<div class="ready-wrapper text-center wow fadeInUp" data-wow-delay=".3s">
+							<h4>educal Core Features</h4>
+							<p>We Provide Impressive Freatures For your Website. You can easily manage Your website. You will love it.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="more-features pt-90 pb-70">
+			<div class="container">
+				<div class="row">
+				
+					<div class="col-lg-3 col-md-4 col-12 mb-30">
+						<div class="bakix-features wow fadeInUp" data-wow-delay=".2s">
+							<img src="{% static 'authentication/img/icon/sass.png' %}" alt="">
+							<h4>Sass</h4>
+						</div>
+					</div>
+					
+					<div class="col-lg-3 col-md-4 col-12 mb-30">
+						<div class="bakix-features wow fadeInUp" data-wow-delay=".2s">
+							<img src="{% static 'authentication/img/icon/bootstrap.png' %}" alt="">
+							<h4>bootstrap v4</h4>
+						</div>
+					</div>
+
+					<div class="col-lg-3 col-md-4 col-12 mb-30">
+						<div class="bakix-features wow fadeInUp" data-wow-delay=".6s">
+							<img src="{% static 'authentication/img/icon/slick.png' %}" alt="">
+							<h4>Slick Slider</h4>
+						</div>
+					</div>
+
+					<div class="col-lg-3 col-md-4 col-12 mb-30">
+						<div class="bakix-features wow fadeInUp" data-wow-delay=".8s">
+							<img src="{% static 'authentication/img/icon/flat-icon.png' %}" alt="" >
+							<h4>Flat Icon</h4>
+						</div>
+					</div>
+
+					<div class="col-lg-3 col-md-4 col-12 mb-30">
+						<div class="bakix-features wow fadeInUp" data-wow-delay=".2s">
+							<img src="{% static 'authentication/img/icon/fontaersome.png' %}" alt="" >
+							<h4>Fontawesome Icon</h4>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-4 col-12 mb-30">
+						<div class="bakix-features wow fadeInUp" data-wow-delay=".4s">
+							<img src="{% static 'authentication/img/icon/html5.png' %}" alt="">
+							<h4>html5</h4>
+						</div>
+					</div>
+
+					<div class="col-lg-3 col-md-4 col-12 mb-30">
+						<div class="bakix-features wow fadeInUp" data-wow-delay=".6s">
+							<img src="{% static 'authentication/img/icon/css3.png' %}" alt="">
+							<h4>css3</h4>
+						</div>
+					</div>
+
+
+					<div class="col-lg-3 col-md-4 col-12 mb-30">
+						<div class="bakix-features wow fadeInUp" data-wow-delay=".8s">
+							<img src="{% static 'authentication/img/icon/jquery.png' %}" alt="">
+							<h4>jquery</h4>
+						</div>
+					</div>
+
+					<div class="col-lg-3 col-md-4 col-12 mb-30">
+						<div class="bakix-features wow fadeInUp" data-wow-delay=".2s">
+							<img src="{% static 'authentication/img/icon/w3c-validation.png' %}" alt="">
+							<h4>W3C Validation</h4>
+						</div>
+					</div>
+
+					<div class="col-lg-3 col-md-4 col-12 mb-30">
+						<div class="bakix-features wow fadeInUp" data-wow-delay=".4s">
+							<img src="{% static 'authentication/img/icon/responsive.png' %}" alt="">
+							<h4>fully responsive</h4>
+						</div>
+					</div>
+
+					<div class="col-lg-3 col-md-4 col-12 mb-30">
+						<div class="bakix-features wow fadeInUp" data-wow-delay=".6s">
+							<img src="{% static 'authentication/img/icon/code.png' %}" alt="">
+							<h4>Clean Code</h4>
+						</div>
+					</div>
+
+					<div class="col-lg-3 col-md-4 col-12 mb-30">
+						<div class="bakix-features wow fadeInUp" data-wow-delay=".8s">
+							<img src="{% static 'authentication/img/icon/mail.png' %}" alt="">
+							<h4>ajax contact form</h4>
+						</div>
+					</div>
+
+					<div class="col-lg-3 col-md-4 col-12 mb-30">
+						<div class="bakix-features wow fadeInUp" data-wow-delay=".2s">
+							<img src="{% static 'authentication/img/icon/google-font.png' %}" alt="">
+							<h4>google font</h4>
+						</div>
+					</div>
+
+					<div class="col-lg-3 col-md-4 col-12 mb-30">
+						<div class="bakix-features wow fadeInUp" data-wow-delay=".4s">
+							<img src="{% static 'authentication/img/icon/magnific-popup.png' %}" alt="">
+							<h4>magnific popup</h4>
+						</div>
+					</div>
+
+					<div class="col-lg-3 col-md-4 col-12 mb-30">
+						<div class="bakix-features wow fadeInUp" data-wow-delay=".6s">
+							<img src="{% static 'authentication/img/icon/speed.png' %}" alt="">
+							<h4>Speed Optimized</h4>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-4 col-12 mb-30">
+						<div class="bakix-features wow fadeInUp" data-wow-delay=".8s">
+							<img src="{% static 'authentication/img/icon/document.png' %}" alt="">
+							<h4>Well Documented</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<footer>
+			<div class="footer-area pt-150 pb-150" style="background-image: url(img/bg/footerbg.jpg)">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="footer-text text-center">
+								<img class="mb-30" src="{% static 'authentication/img/logo/thumb.png' %}" alt="">
+								<h2>Feeling in love? <i>Purchase educal !</i></h2>
+								<p>Impressive design, powerful features, and easy customization</p>
+								<a href="#" target="_blank">Purchase Now</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+
+		<!-- JS here -->
+        <script src="{% static 'authentication/js/vendor/modernizr-3.5.0.min.js' %}"></script>
+        <script src="{% static 'authentication/js/vendor/jquery-1.12.4.min.js' %}"></script>
+        <script src="{% static 'authentication/js/popper.min.js' %}"></script>
+        <script src="{% static 'authentication/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'authentication/js/owl.carousel.min.js' %}"></script>
+        <script src="{% static 'authentication/js/isotope.pkgd.min.js' %}"></script>
+        <script src="{% static 'authentication/js/ajax-form.js' %}"></script>
+        <script src="{% static 'authentication/js/imagesloaded.pkgd.min.js' %}"></script>
+        <script src="{% static 'authentication/js/jquery.magnific-popup.min.js' %}"></script>
+        <script src="{% static 'authentication/js/wow.min.js' %}"></script>
+        <script src="{% static 'authentication/js/plugins.js' %}"></script>
+        <script src="{% static 'authentication/js/main.js' %}"></script>
+    </body>
+
+<!-- Mirrored from themepure.net/template/educal/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 02 Mar 2022 13:00:02 GMT -->
+</html>
