@@ -18,7 +18,7 @@
                <div class="row">
                   <div class="col-xxl-8 offset-xxl-2 col-xl-8 offset-xl-2">
                      <div class="section__title-wrapper text-center mb-55">
-                        <h2 class="section__title">Create a Student <br>  Account</h2>
+                        <h2 class="section__title">Add An <br>  Instructor</h2>
                         <!-- <p>I'm a subhead that goes with a story.</p> -->
                      </div>
                   </div>
@@ -36,6 +36,18 @@
                            <form method="POST" enctype="multipart/form-data">
                               <!-- Security token -->
                               {% csrf_token %}
+                              <div class="sign__input-wrapper mb-25">
+                                 <!-- <h5>Last Name</h5> -->
+                                 {% if form.avatar.errors %}
+                                    <div class="alert alert-danger">{{ form.avatar.errors }}</div>
+                                 {% endif %}
+                                 <div class="sign__input">
+                                    <!-- <input  value="{{ form.avatar.value|default_if_none:'' }}" type="image" placeholder="Last name"> -->
+                                    <p><input type="file"  accept="image/*" name="{{ form.avatar.html_name }}" id="{{ form.avatar.id_for_label }}" onchange="loadFile(event)" style="display: none;"></p>
+                                    <p><label for="{{ form.avatar.id_for_label }}" style="cursor: pointer;">{{ form.avatar.label }}</label></p>
+                                    <p><img id="output" width="200" /></p>
+                                 </div>
+                              </div>
                               <div class="sign__input-wrapper mb-25">
                                  <!-- <h5>First Name</h5> -->
                                  {% if form.first_name.errors %}
@@ -81,13 +93,13 @@
                                  </div>
                               </div>
                               <div class="sign__input-wrapper mb-25">
-                                 <!-- <h5>Address</h5> -->
-                                 {% if form.address.errors %}
-                                    <div class="alert alert-danger">{{ form.address.errors }}</div>
+                                 <!-- <h5>Description</h5> -->
+                                 {% if form.description.errors %}
+                                    <div class="alert alert-danger">{{ form.description.errors }}</div>
                                  {% endif %}
-                                 <label for="{{ form.address.id_for_label }}">{{ form.address.label }}</label>
+                                 <label for="{{ form.description.id_for_label }}">{{ form.description.label }}</label>
                                  <div class="sign__input">
-                                    <input name="{{ form.address.html_name }}" value="{{ form.address.value|default_if_none:'' }}" type="text" placeholder="Address" id="{{ form.address.id_for_label }}">
+                                    <input name="{{ form.description.html_name }}" value="{{ form.description.value|default_if_none:'' }}" type="text" placeholder="Description" id="{{ form.description.id_for_label }}">
                                     <i class="fal fa-location"></i>
                                  </div>
                               </div>
@@ -113,17 +125,14 @@
                                     <i class="fal fa-lock"></i>
                                  </div>
                               </div>
-                              <div class="sign__action d-flex justify-content-between mb-30">
+                              <!-- <div class="sign__action d-flex justify-content-between mb-30">
                                  <div class="sign__agree d-flex align-items-center">
                                     <input class="m-check-input" type="checkbox" id="m-agree" required/>
                                     <label class="m-check-label" for="m-agree">I agree to the <a href="#">Terms & Conditions</a>
                                        </label>
                                  </div>
-                              </div>
-                              <button class="e-btn w-100"> <span></span> Sign Up</button>
-                              <div class="sign__new text-center mt-20">
-                                 <p>Already have an account ? <a href="{% url 'authentication:sign-in' %}"> Sign In</a></p>
-                              </div>
+                              </div> -->
+                              <button class="e-btn w-100"> <span></span> Create Instructor</button>
                            </form>
                         </div>
                      </div>
@@ -134,4 +143,12 @@
          <!-- sign up area end -->
          
       </main>
+      {% block add_script %}
+      <script>
+         var loadFile = function(event) {
+            var image = document.getElementById('output');
+            image.src = URL.createObjectURL(event.target.files[0]);
+         };
+      </script>
+      {% endblock %}
       {% endblock %}
