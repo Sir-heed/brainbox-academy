@@ -7,7 +7,7 @@ from .managers import CustomUserManager
 # Create your models here.
 class User(AbstractUser):
     username = models.CharField(max_length=50, null=True)
-    avatar = models.ImageField(null=True)
+    avatar = models.ImageField(null=True, upload_to='profile/')
     email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=15)
     last_name = models.CharField(max_length=15)
@@ -31,3 +31,7 @@ class User(AbstractUser):
     def __str__(self):
         return self.email
 
+
+class Tutor(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    description = models.TextField(null=True)

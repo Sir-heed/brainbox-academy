@@ -19,6 +19,15 @@ class IsAdmin(permissions.BasePermission):
         return group_status
 
 
+class IsStudent(permissions.BasePermission):
+    """
+    Checks if the user is student
+    """
+    def has_permission(self, request, view):
+        group_status = request.user.groups.filter(name='student').exists()
+        return group_status
+
+
 class IsAdminOrListOnly(permissions.BasePermission):
     """
     If the user is any type of admin allow all request, authenticated user should only be allowed list action only

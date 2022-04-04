@@ -17,33 +17,52 @@
                <div class="row">
                   <div class="col-xxl-8 offset-xxl-2 col-xl-8 offset-xl-2">
                      <div class="section__title-wrapper text-center mb-55">
-                        <h2 class="section__title">Sign in to <br>  recharge direct.</h2>
-                        <p>it you don't have an account you can <a href="#">Register here!</a></p>
+                        <h2 class="section__title">Sign in to <br>  Brainbox Academy.</h2>
+                        <p>it you don't have an account you can <a href="{% url 'authentication:sign-up' %}">Register here!</a></p>
                      </div>
                   </div>
                </div>
                <div class="row">
                   <div class="col-xxl-6 offset-xxl-3 col-xl-6 offset-xl-3 col-lg-8 offset-lg-2">
                      <div class="sign__wrapper white-bg">
-                        <div class="sign__header mb-35">
+                        <!-- <div class="sign__header mb-35">
                            <div class="sign__in text-center">
                               <a href="#" class="sign__social text-start mb-15"><i class="fab fa-facebook-f"></i>Sign in with Facebook</a>
                               <p> <span>........</span> Or, <a href="{% url 'authentication:sign-in' %}">sign in</a> with your email<span> ........</span> </p>
                            </div>
-                        </div>
+                        </div> -->
+                        {% if messages %}
+                        <ul class="messages">
+                           {% for message in messages %}
+                              {% if message.tags == 'error' %} 
+                                 <li class="alert alert-danger">{{ message }}</li>
+                              {% endif %}
+                           {% endfor %}
+                        </ul>
+                        {% endif %}
                         <div class="sign__form">
-                           <form action="#">
+                           <form method="POST">
+                              <!-- Security token -->
+                              {% csrf_token %}
                               <div class="sign__input-wrapper mb-25">
-                                 <h5>Work email</h5>
+                                 <!-- <h5>Work email</h5> -->
+                                 {% if form.email_or_phone.errors %}
+                                    <div class="alert alert-danger">{{ form.email_or_phone.errors }}</div>
+                                 {% endif %}
+                                 <label for="{{ form.email_or_phone.id_for_label }}">{{ form.email_or_phone.label }}</label>
                                  <div class="sign__input">
-                                    <input type="text" placeholder="e-mail address">
+                                    <input name="{{ form.email_or_phone.html_name }}" value="{{ form.email_or_phone.value|default_if_none:'' }}" type="text" placeholder="Email or Phone" id="{{ form.email_or_phone.id_for_label }}" required/>
                                     <i class="fal fa-envelope"></i>
                                  </div>
                               </div>
                               <div class="sign__input-wrapper mb-10">
-                                 <h5>Password</h5>
+                                 <!-- <h5>Password</h5> -->
+                                 {% if form.password.errors %}
+                                    <div class="alert alert-danger">{{ form.password.errors }}</div>
+                                 {% endif %}
+                                 <label for="{{ form.password.id_for_label }}">{{ form.password.label }}</label>
                                  <div class="sign__input">
-                                    <input type="text" placeholder="Password">
+                                    <input name="{{ form.password.html_name }}" value="{{ form.password.value|default_if_none:'' }}" type="password" placeholder="Password" id="{{ form.password.id_for_label }}" required/>
                                     <i class="fal fa-lock"></i>
                                  </div>
                               </div>
@@ -59,7 +78,7 @@
                               </div>
                               <button class="e-btn  w-100"> <span></span> Sign In</button>
                               <div class="sign__new text-center mt-20">
-                                 <p>New to Markit? <a href="{% url 'authentication:sign-up' %}">Sign Up</a></p>
+                                 <p>New to Brainbox Academy? <a href="{% url 'authentication:sign-up' %}">Sign Up</a></p>
                               </div>
                            </form>
                         </div>

@@ -1,6 +1,16 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import Http404, HttpResponse
 from django.template import loader
+
+from django.contrib.auth.models import Group
+from django.db.models import Q
+from django.contrib.auth import login, logout
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib import messages
+
+from authentication.forms import LoginForm, TutorCreationForm, UserCreationForm
+from authentication.models import Tutor, User
+from authentication.utils import admin_check
 
 # Create your views here.
 def index(request):
@@ -9,6 +19,7 @@ def index(request):
     }
     return HttpResponse(template.render(context, request))
 
+@login_required()
 def course_list(request):
     template = loader.get_template('authentication/course-list.html')
     context = {
@@ -16,6 +27,7 @@ def course_list(request):
     return HttpResponse(template.render(context, request))
 
 
+@login_required()
 def course_grid(request):
     template = loader.get_template('authentication/course-grid.html')
     context = {
@@ -23,6 +35,7 @@ def course_grid(request):
     return HttpResponse(template.render(context, request))
 
 
+@login_required()
 def course_sidebar(request):
     template = loader.get_template('authentication/course-sidebar.html')
     context = {
@@ -30,6 +43,7 @@ def course_sidebar(request):
     return HttpResponse(template.render(context, request))
 
 
+@login_required()
 def course_details(request):
     template = loader.get_template('authentication/course-details.html')
     context = {
@@ -123,15 +137,40 @@ def shop(request):
 
 def sign_in(request):
     template = loader.get_template('authentication/sign-in.html')
-    context = {
-    }
+    context = {}
+    form = LoginForm(request.POST or None)
+    if form.is_valid():
+        email_or_phone = form.cleaned_data.get('email_or_phone')
+        password = form.cleaned_data.get('password')
+        try:
+            user = User.objects.get(Q(email__iexact=email_or_phone)|Q(phone__iexact=email_or_phone))
+            if user.check_password(password):
+                next = request.GET.get('next')
+                login(request, user)
+                messages.success(request, "Login successful.")
+                if next is not None:
+                    return redirect(next)
+                return redirect("authentication:index")
+            else:
+                messages.error(request,"Incorrect password")
+        except User.DoesNotExist:
+            messages.error(request,"Invalid email or phone")
+    context['form']= form
     return HttpResponse(template.render(context, request))
 
 
 def sign_up(request):
     template = loader.get_template('authentication/sign-up.html')
-    context = {
-    }
+    context = {}
+    form = UserCreationForm(request.POST or None)
+    if form.is_valid():
+        user = form.save()
+        group, _ = Group.objects.get_or_create(name='student')
+        user.groups.add(group)
+        login(request, user)
+        messages.success(request, "Registration successful.")
+        return redirect("authentication:index")
+    context['form']= form
     return HttpResponse(template.render(context, request))
 
 
@@ -147,3 +186,29 @@ def wishlist(request):
     context = {
     }
     return HttpResponse(template.render(context, request))
+
+
+@user_passes_test(admin_check)
+def add_instructor(request):
+    template = loader.get_template('authentication/add-instructor.html')
+    context = {}
+    form = TutorCreationForm(request.POST or None)
+    print(request.POST or None)
+    print(request.FILES.get('avatar'))
+    print(form.is_valid())
+    print(form.errors)
+    if form.is_valid():
+        description = form.cleaned_data.get('description')
+        user = form.save()
+        group, _ = Group.objects.get_or_create(name='instructor')
+        user.groups.add(group)
+        Tutor.objects.create(user=user, description=description)
+        messages.success(request, "Tutor created successful.")
+        return redirect("authentication:instructor")
+    context['form']= form
+    return HttpResponse(template.render(context, request))
+
+
+def user_logout(request):
+    logout(request)
+    return redirect('authentication:index')
