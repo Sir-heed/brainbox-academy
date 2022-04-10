@@ -37,7 +37,30 @@
                   </div>
                </div>
                <div class="row">
-                  <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                  {% for instructor in instructors %}
+                     <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                        <div class="teacher__item text-center grey-bg-5 transition-3 mb-30">
+                           <div class="teacher__thumb w-img fix">
+                              <a href="{% url 'authentication:instructor-details' instructor.id %}">
+                                 <img src="{{ instructor.user.avatar }}" alt="Instructor Image">
+                              </a>
+                           </div>
+                           <div class="teacher__content">
+                              <h3 class="teacher__title">{{ instructor.user.first_name|title }} {{ instructor.user.last_name|title }}</h3> 
+                              <span>{{ instructor.description }}</span>
+
+                              <div class="teacher__social">
+                                 <ul>
+                                    <li><a href="#"><i class="social_facebook"></i></a></li>
+                                    <li><a href="#"><i class="social_twitter"></i></a></li>
+                                    <li><a href="#"><i class="social_vimeo"></i></a></li>
+                                 </ul>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  {% endfor %}
+                  <!-- <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
                      <div class="teacher__item text-center grey-bg-5 transition-3 mb-30">
                         <div class="teacher__thumb w-img fix">
                            <a href="#">
@@ -162,7 +185,7 @@
                            </div>
                         </div>
                      </div>
-                  </div>
+                  </div> -->
                </div>
             </div>
          </section>
