@@ -15,7 +15,9 @@ from authentication.utils import admin_check
 # Create your views here.
 def index(request):
     template = loader.get_template('authentication/index.html')
+    instructors = Tutor.objects.all()
     context = {
+        'instructors':instructors
     }
     return HttpResponse(template.render(context, request))
 
@@ -107,16 +109,20 @@ def event_details(request):
     return HttpResponse(template.render(context, request))
 
 
-def instructor_details(request):
+def instructor_details(request, pk):
     template = loader.get_template('authentication/instructor-details.html')
+    user = User.objects.get(id=pk)
     context = {
+        'user': user
     }
     return HttpResponse(template.render(context, request))
 
 
 def instructor(request):
     template = loader.get_template('authentication/instructor.html')
+    instructors = Tutor.objects.all()
     context = {
+        'instructors': instructors
     }
     return HttpResponse(template.render(context, request))
 
@@ -164,9 +170,12 @@ def sign_up(request):
     context = {}
     form = UserCreationForm(request.POST or None)
     if form.is_valid():
+        password = form.cleaned_data.pop('password')
         user = form.save()
         group, _ = Group.objects.get_or_create(name='student')
         user.groups.add(group)
+        user.set_password(password)
+        user.save()
         login(request, user)
         messages.success(request, "Registration successful.")
         return redirect("authentication:index")
@@ -199,9 +208,12 @@ def add_instructor(request):
     print(form.errors)
     if form.is_valid():
         description = form.cleaned_data.get('description')
+        password = form.cleaned_data.pop('password')
         user = form.save()
         group, _ = Group.objects.get_or_create(name='instructor')
         user.groups.add(group)
+        user.set_password(password)
+        user.save()
         Tutor.objects.create(user=user, description=description)
         messages.success(request, "Tutor created successful.")
         return redirect("authentication:instructor")
