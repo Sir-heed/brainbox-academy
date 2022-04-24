@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+{% load static %}
+   {% block body %}
+      <main>
+
+         <!-- sign up area start -->
+         <section class="signup__area po-rel-z1 pt-100 pb-145">
+            <div class="sign__shape">
+               <img class="man-1" src="{% static 'authentication/img/icon/sign/man-3.png' %}" alt="">
+               <img class="man-2 man-22" src="{% static 'authentication/img/icon/sign/man-2.png' %}" alt="">
+               <img class="circle" src="{% static 'authentication/img/icon/sign/circle.png' %}" alt="">
+               <img class="zigzag" src="{% static 'authentication/img/icon/sign/zigzag.png' %}" alt="">
+               <img class="dot" src="{% static 'authentication/img/icon/sign/dot.png' %}" alt="">
+               <img class="bg" src="{% static 'authentication/img/icon/sign/sign-up.png' %}" alt="">
+               <img class="flower" src="{% static 'authentication/img/icon/sign/flower.png' %}" alt="">
+            </div>
+            <div class="container">
+               <div class="row">
+                  <div class="col-xxl-8 offset-xxl-2 col-xl-8 offset-xl-2">
+                     <div class="section__title-wrapper text-center mb-55">
+                        <h2 class="section__title">Add An <br>  Instructor</h2>
+                        <!-- <p>I'm a subhead that goes with a story.</p> -->
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-xxl-6 offset-xxl-3 col-xl-6 offset-xl-3 col-lg-8 offset-lg-2">
+                     <div class="sign__wrapper white-bg">
+                        <!-- <div class="sign__header mb-35">
+                           <div class="sign__in text-center">
+                              <a href="#" class="sign__social g-plus text-start mb-15"><i class="fab fa-google-plus-g"></i>Sign Up with Google</a>
+                              <p> <span>........</span> Or, <a href="{% url 'authentication:sign-up' %}">sign up</a> with your email<span> ........</span> </p>
+                           </div>
+                        </div> -->
+                        <div class="sign__form">
+                           <form method="POST" enctype="multipart/form-data">
+                              <!-- Security token -->
+                              {% csrf_token %}
+                              <div class="sign__input-wrapper mb-25">
+                                 <!-- <h5>First Name</h5> -->
+                                 {% if form.topic.errors %}
+                                    <div class="alert alert-danger">{{ form.topic.errors }}</div>
+                                 {% endif %}
+                                 <label for="{{ form.topic.id_for_label }}">{{ form.topic.label }}</label>
+                                 <div class="sign__input">
+                                    <input name="{{ form.topic.html_name }}" value="{{ form.topic.value|default_if_none:'' }}" type="text" placeholder="Topic" id="{{ form.topic.id_for_label }}" required/>
+                                    <i class="fal fa-user"></i>
+                                 </div>
+                              </div>
+                              <div class="sign__input-wrapper mb-25">
+                                <!-- <h5>First Name</h5> -->
+                                {% if form.event_type.errors %}
+                                   <div class="alert alert-danger">{{ form.event_type.errors }}</div>
+                                {% endif %}
+                                <label for="{{ form.event_type.id_for_label }}">{{ form.event_type.label }}</label>
+                                <div class="sign__input">
+                                   <input name="{{ form.event_type.html_name }}" value="{{ form.event_type.value|default_if_none:'' }}" type="text" placeholder="Event Type (e.g Tutorial)" id="{{ form.event_type.id_for_label }}" required/>
+                                   <i class="fal fa-user"></i>
+                                </div>
+                             </div>
+                             <div class="sign__input-wrapper mb-25">
+                                {% if form.location.errors %}
+                                   <div class="alert alert-danger">{{ form.location.errors }}</div>
+                                {% endif %}
+                                <label for="{{ form.location.id_for_label }}">{{ form.location.label }}</label>
+                                <div class="sign__input">
+                                   <!-- <input name="{{ form.location.html_name }}" value="{{ form.location.value|default_if_none:'' }}" type="text" placeholder="location" id="{{ form.location.id_for_label }}"> -->
+                                   <textarea name="{{ form.location.html_name }}" type="text" class="form-control" id="{{ form.location.id_for_label }}" rows=3 required>{{ form.location.value|default_if_none:'' }}</textarea>
+                                   <!-- <i class="fal fa-location"></i> -->
+                                </div>
+                             </div>
+                              <div class="sign__input-wrapper mb-25">
+                                {% if form.description.errors %}
+                                   <div class="alert alert-danger">{{ form.description.errors }}</div>
+                                {% endif %}
+                                <label for="{{ form.description.id_for_label }}">{{ form.description.label }}</label>
+                                <div class="sign__input">
+                                   <!-- <input name="{{ form.description.html_name }}" value="{{ form.description.value|default_if_none:'' }}" type="text" placeholder="Description" id="{{ form.description.id_for_label }}"> -->
+                                   <textarea name="{{ form.description.html_name }}" type="text" class="form-control" id="{{ form.description.id_for_label }}" rows=10 required>{{ form.description.value|default_if_none:'' }}</textarea>
+                                   <!-- <i class="fal fa-location"></i> -->
+                                </div>
+                             </div>
+                              <div class="sign__input-wrapper mb-25">
+                                 {% if form.price.errors %}
+                                    <div class="alert alert-danger">{{ form.price.errors }}</div>
+                                 {% endif %}
+                                 <label for="{{ form.price.id_for_label }}">{{ form.price.label }}</label>
+                                 <div class="sign__input">
+                                    <input name="{{ form.price.html_name }}" value="{{ form.price.value|default_if_none:'' }}" type="number" placeholder="Price" id="{{ form.price.id_for_label }}" required/>
+                                    <i class="fal fa-user"></i>
+                                 </div>
+                              </div>
+                              <div class="sign__input-wrapper mb-25">
+                                {% if form.duration_in_hours.errors %}
+                                   <div class="alert alert-danger">{{ form.duration_in_hours.errors }}</div>
+                                {% endif %}
+                                <label for="{{ form.duration_in_hours.id_for_label }}">{{ form.duration_in_hours.label }}</label>
+                                <div class="sign__input">
+                                   <input name="{{ form.duration_in_hours.html_name }}" value="{{ form.duration_in_hours.value|default_if_none:'' }}" type="number" placeholder="duration_in_hours" id="{{ form.duration_in_hours.id_for_label }}" required/>
+                                   <i class="fal fa-user"></i>
+                                </div>
+                             </div>
+                              <div class="sign__input-wrapper mb-25">
+                                {% if form.tutors.errors %}
+                                   <div class="alert alert-danger">{{ form.tutors.errors }}</div>
+                                {% endif %}
+                                <label for="{{ form.tutors.id_for_label }}">{{ form.tutors.label }}</label>
+                                <!-- <div class="sign__input">
+                                   <input name="{{ form.tutors.html_name }}" value="{{ form.tutors.value|default_if_none:'' }}" type="number" placeholder="Last name" id="{{ form.tutors.id_for_label }}" required/>
+                                   <i class="fal fa-user"></i>
+                                </div> -->
+                                <select name="{{ form.tutors.html_name }}" value="{{ form.tutors.value }}" id="{{ form.tutors.id_for_label }}" class="form-control" multiple>
+                                    {% for widget in form.tutors.subwidgets %}
+                                        {{ widget }}
+                                    {% endfor %}
+                                </select>
+                             </div>
+                             <div class="sign__input-wrapper mb-25">
+                                {% if form.event_date.errors %}
+                                   <div class="alert alert-danger">{{ form.event_date.errors }}</div>
+                                {% endif %}
+                                <label for="{{ form.event_date.id_for_label }}">{{ form.event_date.label }}</label>
+                                <div class="sign__input">
+                                   <input name="{{ form.event_date.html_name }}" value="{{ form.event_date.value|default_if_none:'' }}" type="date" placeholder="Last name" id="{{ form.event_date.id_for_label }}" required/>
+                                   <i class="fal fa-user"></i>
+                                </div>
+                             </div>
+                             <div class="sign__input-wrapper mb-25">
+                                {% if form.event_time.errors %}
+                                   <div class="alert alert-danger">{{ form.event_time.errors }}</div>
+                                {% endif %}
+                                <label for="{{ form.event_time.id_for_label }}">{{ form.event_time.label }}</label>
+                                <div class="sign__input">
+                                   <input name="{{ form.event_time.html_name }}" value="{{ form.event_time.value|default_if_none:'' }}" type="time" placeholder="Last name" id="{{ form.event_date.id_for_label }}" required/>
+                                   <i class="fal fa-user"></i>
+                                </div>
+                             </div>
+                             <div class="sign__input-wrapper mb-25">
+                                {% if form.status.errors %}
+                                   <div class="alert alert-danger">{{ form.status.errors }}</div>
+                                {% endif %}
+                                <label for="{{ form.status.id_for_label }}">{{ form.status.label }}</label>
+                                <!-- <div class="sign__input">
+                                   <input name="{{ form.status.html_name }}" value="{{ form.status.value|default_if_none:'' }}" type="number" placeholder="Last name" id="{{ form.status.id_for_label }}" required/>
+                                   <i class="fal fa-user"></i>
+                                </div> -->
+                                <select name="{{ form.status.html_name }}" value="{{ form.status.value }}" id="{{ form.status.id_for_label }}" class="form-control" >
+                                    {% for widget in form.status.subwidgets %}
+                                        {{ widget }}
+                                    {% endfor %}
+                                </select>
+                             </div>
+                              <button class="e-btn w-100"> <span></span> Create Event</button>
+                           </form>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <!-- sign up area end -->
+         
+      </main>
+      {% block add_script %}
+      <script>
+         var loadFile = function(event) {
+            var image = document.getElementById('output');
+            image.src = URL.createObjectURL(event.target.files[0]);
+         };
+      </script>
+      {% endblock %}
+      {% endblock %}

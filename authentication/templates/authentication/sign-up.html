@@ -87,7 +87,8 @@
                                  {% endif %}
                                  <label for="{{ form.address.id_for_label }}">{{ form.address.label }}</label>
                                  <div class="sign__input">
-                                    <input name="{{ form.address.html_name }}" value="{{ form.address.value|default_if_none:'' }}" type="text" placeholder="Address" id="{{ form.address.id_for_label }}">
+                                    <!-- <input name="{{ form.address.html_name }}" value="{{ form.address.value|default_if_none:'' }}" type="text" placeholder="Address" id="{{ form.address.id_for_label }}"> -->
+                                    <textarea name="{{ form.address.html_name }}" type="text" class="form-control" id="{{ form.address.id_for_label }}" required>{{ form.address.value|default_if_none:'' }}</textarea>
                                     <i class="fal fa-location"></i>
                                  </div>
                               </div>

@@ -1,5 +1,5 @@
 from django import forms
-from .models import User
+from .models import Appointment, User
 
 class UserCreationForm(forms.ModelForm):
     confirm_password = forms.CharField(label='Confirm Password', required=True)
@@ -41,3 +41,10 @@ class TutorCreationForm(forms.ModelForm):
         if password != confirm_password:
             msg = "Passwords do not match"
             self.add_error('password', msg)
+
+
+class AppointmentForm(forms.ModelForm):
+    class Meta:
+        model = Appointment
+        read_only_fields = ['status', 'time_created', 'date_created', 'user', 'name', 'email']
+        fields = '__all__'
