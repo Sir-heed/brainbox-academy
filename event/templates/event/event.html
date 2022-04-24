@@ -10,13 +10,13 @@
                <div class="row">
                   <div class="col-xxl-12">
                      <div class="page__title-wrapper mt-110">
-                        <h3 class="page__title">Instructor</h3>                         
+                        <h3 class="page__title">Events</h3>                         
                         <nav aria-label="breadcrumb">
                            <ol class="breadcrumb">
                               <li class="breadcrumb-item"><a href="{% url 'authentication:index' %}">Home</a></li>
-                              <li class="breadcrumb-item active" aria-current="page">Instructor</li>
+                              <li class="breadcrumb-item active" aria-current="page">Events</li>
                               {% if request.user|has_group:"admin" %}
-                                 <li class="breadcrumb-item"><a href="{% url 'authentication:add-instructor' %}">Add Instructor</a></li>
+                                 <li class="breadcrumb-item"><a href="{% url 'event:add-event' %}">Add Event</a></li>
                               {% endif %}
                            </ol>
                         </nav>
@@ -33,33 +33,48 @@
                <div class="row">
                   <div class="col-xxl-6 offset-xxl-3">
                      <div class="section__title-wrapper text-center mb-60">
-                        <h2 class="section__title">Our Most <br>
-                           Popular <span class="yellow-bg"> Teachers <img src="{% static 'authentication/img/shape/yellow-bg-2.png' %}" alt="">  </span> <br>
-                        </h2>
-                        <p>You don't have to struggle alone, you've got our assistance and help.</p>
+                        <h2 class="section__title">Recent Events</h2>
+                           <!-- Popular <span class="yellow-bg"> Teachers <img src="{% static 'authentication/img/shape/yellow-bg-2.png' %}" alt="">  </span> <br>
+                        <p>You don't have to struggle alone, you've got our assistance and help.</p> -->
                      </div>
                   </div>
                </div>
+               <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+                  <ul class="pagination">
+                     {% if events.has_previous %}
+                     <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
+                     <li class="page-item"><a class="page-link" href="?page={{ events.previous_page_number }}">previous</a></li>
+                     {% endif %}
+            
+                     <li class="page-item"><span class="current page-link">
+                        Page {{ events.number }} of {{ events.paginator.num_pages }}.
+                     </span></li>
+                     {% if events.has_next %}
+                     <li class="page-item"><a class="page-link" href="?page={{ events.next_page_number }}">next</a></li>
+                     <li class="page-item"><a class="page-link" href="?page={{ events.paginator.num_pages }}">last &raquo;</a></li>
+                     {% endif %}
+                  </ul>
+              </nav>
                <div class="row">
-                  {% for instructor in instructors %}
-                     <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                  {% for event in events %}
+                     <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6" onclick='location.href="{% url 'event:event-details' event.id %}";'>
                         <div class="teacher__item text-center grey-bg-5 transition-3 mb-30">
-                           <div class="teacher__thumb w-img fix">
-                              <a href="{% url 'authentication:instructor-details' instructor.id %}">
-                                 <img src="{{ instructor.user.avatar }}" alt="Instructor Image">
-                              </a>
-                           </div>
                            <div class="teacher__content">
-                              <h3 class="teacher__title">{{ instructor.user.first_name|title }} {{ instructor.user.last_name|title }}</h3> 
-                              <span>{{ instructor.description }}</span>
-
-                              <div class="teacher__social">
+                              <h3 class="teacher__title">{{ event.topic }}</h3> 
+                              <h2><span>{{ event.description|truncatechars:50 }}</span></h2>
+                              <h4>By: 
+                                 {% for tutor in event.tutors.all %}
+                                    <span>{{ tutor.user.first_name }} {{tutor.user.last_name}}</span>
+                                 {% endfor %}
+                              </h4>
+                              <span> {{ event.event_date }} {{event.event_time }}</span>
+                              <!-- <div class="teacher__social">
                                  <ul>
                                     <li><a href="#"><i class="social_facebook"></i></a></li>
                                     <li><a href="#"><i class="social_twitter"></i></a></li>
                                     <li><a href="#"><i class="social_vimeo"></i></a></li>
                                  </ul>
-                              </div>
+                              </div> -->
                            </div>
                         </div>
                      </div>

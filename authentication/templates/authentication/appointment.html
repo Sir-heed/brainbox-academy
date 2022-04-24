@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load static %}
-{% load user_group %}
    {% block body %}
       <main>
 
@@ -10,14 +9,11 @@
                <div class="row">
                   <div class="col-xxl-12">
                      <div class="page__title-wrapper mt-110">
-                        <h3 class="page__title">Instructor</h3>                         
+                        <h3 class="page__title">Appointment</h3>                         
                         <nav aria-label="breadcrumb">
                            <ol class="breadcrumb">
                               <li class="breadcrumb-item"><a href="{% url 'authentication:index' %}">Home</a></li>
-                              <li class="breadcrumb-item active" aria-current="page">Instructor</li>
-                              {% if request.user|has_group:"admin" %}
-                                 <li class="breadcrumb-item"><a href="{% url 'authentication:add-instructor' %}">Add Instructor</a></li>
-                              {% endif %}
+                              <li class="breadcrumb-item active" aria-current="page">Appointments</li>
                            </ol>
                         </nav>
                      </div>
@@ -33,15 +29,88 @@
                <div class="row">
                   <div class="col-xxl-6 offset-xxl-3">
                      <div class="section__title-wrapper text-center mb-60">
-                        <h2 class="section__title">Our Most <br>
+                        <!-- <h2 class="section__title">Our Most <br>
                            Popular <span class="yellow-bg"> Teachers <img src="{% static 'authentication/img/shape/yellow-bg-2.png' %}" alt="">  </span> <br>
-                        </h2>
-                        <p>You don't have to struggle alone, you've got our assistance and help.</p>
+                        </h2> -->
+                        <!-- <p>You don't have to struggle alone, you've got our assistance and help.</p> -->
+                        <h2 class="section__title">Appointment List</h2>
+                            <!-- Popular <span class="yellow-bg"> Teachers <img src="{% static 'authentication/img/shape/yellow-bg-2.png' %}" alt="">  </span> <br> -->
+                        <!-- PAGINATION -->
+                        <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+                            <ul class="pagination">
+                                    {% if appointments.has_previous %}
+                                    <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
+                                    <li class="page-item"><a class="page-link" href="?page={{ appointments.previous_page_number }}">previous</a></li>
+                                    {% endif %}
+                            
+                                    <li class="page-item"><span class="current page-link">
+                                        Page {{ appointments.number }} of {{ appointments.paginator.num_pages }}.
+                                    </span></li>
+                                    {% if appointments.has_next %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ appointments.next_page_number }}">next</a></li>
+                                    <li class="page-item"><a class="page-link" href="?page={{ appointments.paginator.num_pages }}">last &raquo;</a></li>
+                                    {% endif %}
+                            </ul>
+                        </nav>
                      </div>
                   </div>
                </div>
                <div class="row">
-                  {% for instructor in instructors %}
+                <table class="table">
+                    <!-- user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+                    name = models.CharField(max_length=200, null=True, blank=True)
+                    email = models.EmailField(null=True, blank=True)
+                    appointment_date = models.DateField()
+                    appointment_time = models.TimeField()
+                    subject = models.TextField(null=True, blank=True)
+                    message = models.TextField(null=True, blank=True)
+                    status = models.CharField(max_length=20, default='Pending', null=True, blank=True)
+                    time_created = models.TimeField(auto_now_add=True, null=True, blank=True)
+                    date_created = models.DateField(auto_now_add=True, null=True, blank=True) -->
+                    <thead>
+                      <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Appointment Date</th>
+                        <th scope="col">User Is Registered</th>
+                        <th scope="col">Message</th>
+                        <th scope="col">Date Created</th>
+                        <th scope="col">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    {% for appointment in appointments %}
+                      <tr>
+                        <td>
+                            {% if appointment.user %}
+                            {{ appointment.user.first_name }} {{ appointment.user.last_name }} 
+                            {% else %}
+                            {{ appointment.name }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if appointment.user %}
+                            {{ appointment.user.email }}
+                            {% else %}
+                            {{ appointment.email }}
+                            {% endif %}
+                        </td>
+                        <td>{{ appointment.appointment_date }} {{ appointment.appointment_time }}</td>
+                        <td>
+                            {% if appointment.user %}
+                            True
+                            {% else %}
+                            False
+                            {% endif %}
+                        </td>
+                        <td>{{ appointment.message }}</td>
+                        <td>{{ appointment.date_created }} {{ appointment.time_created }}</td>
+                        <td>{{ appointment.status }}</td>
+                      </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                  <!-- {% for instructor in instructors %}
                      <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
                         <div class="teacher__item text-center grey-bg-5 transition-3 mb-30">
                            <div class="teacher__thumb w-img fix">
@@ -63,7 +132,7 @@
                            </div>
                         </div>
                      </div>
-                  {% endfor %}
+                  {% endfor %} -->
                   <!-- <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
                      <div class="teacher__item text-center grey-bg-5 transition-3 mb-30">
                         <div class="teacher__thumb w-img fix">
@@ -232,4 +301,4 @@
          </section>
          <!-- banner area end -->
       </main>
-   {% endblock %}
+{% endblock %}

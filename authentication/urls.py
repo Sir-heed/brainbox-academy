@@ -1,7 +1,7 @@
 from django.urls import path, include
 from django.conf.urls import handler404, handler500
 from .views import index, course_list, course_grid, course_sidebar, course_details, blog, blog_details, about, cart, checkout, contact, error, \
-    event_details, instructor_details, instructor, product, shop, sign_in, sign_up, site, wishlist, add_instructor, user_logout
+    instructor_details, instructor, product, shop, sign_in, sign_up, site, wishlist, add_instructor, user_logout, student, appointment
 
 app_name = 'authentication'
 
@@ -18,7 +18,6 @@ urlpatterns = [
     path('checkout', checkout, name='checkout'),
     path('contact', contact, name='contact'),
     path('error', error, name='error'),
-    path('event-details', event_details, name='event-details'),
     path('instructor-details/<int:pk>', instructor_details, name='instructor-details'),
     path('instructor', instructor, name='instructor'),
     path('product', product, name='product'),
@@ -28,7 +27,9 @@ urlpatterns = [
     path('site', site, name='site'),
     path('wishlist', wishlist, name='wishlist'),
     path('add-instructor', add_instructor, name='add-instructor'),
-    path('logout', user_logout, name='logout')
+    path('logout', user_logout, name='logout'),
+    path('student', student, name='student'),
+    path('appointment', appointment, name='appointment'),
 ]
 
 handler404 = error

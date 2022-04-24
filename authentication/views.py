@@ -4,13 +4,14 @@ from django.template import loader
 
 from django.contrib.auth.models import Group
 from django.db.models import Q
+from django.core.paginator import Paginator
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib import messages
 
-from authentication.forms import LoginForm, TutorCreationForm, UserCreationForm
-from authentication.models import Tutor, User
-from authentication.utils import admin_check
+from .forms import AppointmentForm, LoginForm, TutorCreationForm, UserCreationForm
+from .models import Appointment, Tutor, User
+from .utils import admin_check
 
 # Create your views here.
 def index(request):
@@ -90,20 +91,23 @@ def checkout(request):
 
 def contact(request):
     template = loader.get_template('authentication/contact.html')
-    context = {
-    }
+    context = {}
+    form = AppointmentForm(request.POST or None)
+    print(form.errors)
+    print(form.is_valid())
+    if form.is_valid():
+        appointment = form.save()
+        if request.user.is_authenticated:
+            appointment.user = request.user
+        appointment.save()
+        messages.success(request, "Appointment created successfully.")
+        return redirect("authentication:index")
+    context['form']= form
     return HttpResponse(template.render(context, request))
 
 
 def error(request, exception):
     template = loader.get_template('authentication/error.html')
-    context = {
-    }
-    return HttpResponse(template.render(context, request))
-
-
-def event_details(request):
-    template = loader.get_template('authentication/event-details.html')
     context = {
     }
     return HttpResponse(template.render(context, request))
@@ -202,10 +206,6 @@ def add_instructor(request):
     template = loader.get_template('authentication/add-instructor.html')
     context = {}
     form = TutorCreationForm(request.POST or None)
-    print(request.POST or None)
-    print(request.FILES.get('avatar'))
-    print(form.is_valid())
-    print(form.errors)
     if form.is_valid():
         description = form.cleaned_data.get('description')
         password = form.cleaned_data.pop('password')
@@ -224,3 +224,49 @@ def add_instructor(request):
 def user_logout(request):
     logout(request)
     return redirect('authentication:index')
+
+
+@user_passes_test(admin_check)
+def student(request):
+    template = loader.get_template('authentication/student.html')
+    students = User.objects.filter(groups__name='student')
+    paginator = Paginator(students, 10) # Show 25 news per page.
+    page_number = request.GET.get('page')
+    students = paginator.get_page(page_number)
+    context = {
+        'students': students
+    }
+    return HttpResponse(template.render(context, request))
+
+
+@user_passes_test(admin_check)
+def add_instructor(request):
+    template = loader.get_template('authentication/add-instructor.html')
+    context = {}
+    form = TutorCreationForm(request.POST or None)
+    if form.is_valid():
+        description = form.cleaned_data.get('description')
+        password = form.cleaned_data.pop('password')
+        user = form.save()
+        group, _ = Group.objects.get_or_create(name='instructor')
+        user.groups.add(group)
+        user.set_password(password)
+        user.save()
+        Tutor.objects.create(user=user, description=description)
+        messages.success(request, "Tutor created successful.")
+        return redirect("authentication:instructor")
+    context['form']= form
+    return HttpResponse(template.render(context, request))
+
+
+@user_passes_test(admin_check)
+def appointment(request):
+    template = loader.get_template('authentication/appointment.html')
+    appointments = Appointment.objects.all()
+    paginator = Paginator(appointments, 10) # Show 25 news per page.
+    page_number = request.GET.get('page')
+    appointments = paginator.get_page(page_number)
+    context = {
+        'appointments': appointments
+    }
+    return HttpResponse(template.render(context, request))

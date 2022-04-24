@@ -32,7 +32,6 @@
       <![endif]-->
       
       <!-- Add your site or application content here -->  
-
       <!-- pre loader area start -->
       <div id="loading">
          <div id="loading-center">
@@ -58,6 +57,16 @@
 
       <!-- header area start -->
       <header>
+         {% if messages %}
+         {% for message in messages %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+               <strong>{{ message }}</strong>
+               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+         {% endfor %}
+         {% endif %}
          <div id="header-sticky" class="header__area header__transparent header__padding header__white">
             <div class="container-fluid">
                <div class="row align-items-center">
@@ -140,13 +149,17 @@
                                     <ul class="submenu">
                                        <li><a href="{% url 'authentication:about' %}">About</a></li>
                                        <li><a href="{% url 'authentication:instructor' %}">Instructor</a></li>
-                                       <li><a href="{% url 'authentication:event-details' %}">Event Details</a></li>
+                                       <li><a href="{% url 'event:event' %}">Event</a></li>
                                        <li><a href="{% url 'authentication:cart' %}">My Cart</a></li>
                                        <li><a href="{% url 'authentication:wishlist' %}">My Wishlist</a></li>
                                        <li><a href="{% url 'authentication:checkout' %}">checkout</a></li>
                                        <li><a href="{% url 'authentication:sign-in' %}">Sign In</a></li>
                                        <li><a href="{% url 'authentication:sign-up' %}">Sign Up</a></li>
                                        <li><a href="{% url 'authentication:error' %}">Error</a></li>
+                                       {% if request.user|has_group:"admin" %}
+                                       <li><a href="{% url 'authentication:student' %}">Students</a></li>
+                                       <li><a href="{% url 'authentication:appointment' %}">Appointment</a></li>
+                                       {% endif %}
                                     </ul>
                                  </li>
                                  <li><a href="{% url 'authentication:contact' %}">Contact</a></li>
@@ -184,9 +197,6 @@
                         <div class="header__btn ml-20 d-none d-sm-block">
                            <h5 class="text-white">Welcome, {{ request.user.first_name.capitalize }} {{ request.user.last_name.capitalize }}</h5>
                         </div>
-                        {% if request.user|has_group:"admin" %}
-                           <a href="{% url 'authentication:add-instructor' %}" class="e-btn">Add Instructor</a>
-                        {% endif %}
                         <div class="header__btn ml-20 d-none d-sm-block">
                            <!-- <a href="{% url 'authentication:contact' %}" class="e-btn">Try for free</a> -->
                            <a href="{% url 'authentication:logout' %}" class="e-btn">Logout</a>
