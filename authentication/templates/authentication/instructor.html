@@ -46,7 +46,7 @@
                         <div class="teacher__item text-center grey-bg-5 transition-3 mb-30">
                            <div class="teacher__thumb w-img fix">
                               <a href="{% url 'authentication:instructor-details' instructor.id %}">
-                                 <img src="{{ instructor.user.avatar }}" alt="Instructor Image">
+                                 <img src="{{ instructor.user.avatar.url }}" alt="Instructor Image">
                               </a>
                            </div>
                            <div class="teacher__content">

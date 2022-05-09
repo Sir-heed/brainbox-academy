@@ -1,4 +1,5 @@
 from django import forms
+from cloudinary.forms import CloudinaryFileField
 from .models import Appointment, User
 
 class UserCreationForm(forms.ModelForm):
@@ -32,6 +33,12 @@ class TutorCreationForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['email', 'first_name', 'last_name', 'phone', 'password', 'confirm_password', 'description', 'avatar']
+        image = CloudinaryFileField(
+            options = { 
+                'tags': "directly_uploaded",
+                'crop': 'limit', 'width': 250, 'height': 250,
+                'eager': [{ 'crop': 'fill', 'width': 150, 'height': 100 }]
+        })
 
     def clean(self):
         cleaned_data = super().clean()

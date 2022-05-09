@@ -15,7 +15,7 @@
                <div class="row">
                   <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
                      <div class="teacher__details-thumb p-relative w-img pr-30">
-                        <img src="{{ user.avatar }}" alt="">
+                        <img src="{{ tutor.user.avatar.url }}" alt="tutor image">
                         <div class="teacher__details-shape">
                            <img class="teacher-details-shape-1" src="{% static 'authentication/img/teacher/details/shape/shape-1.png' %}" alt="">
                            <img class="teacher-details-shape-2" src="{% static 'authentication/img/teacher/details/shape/shape-2.png' %}" alt="">
@@ -26,8 +26,8 @@
                      <div class="teacher__wrapper">
                         <div class="teacher__top d-md-flex align-items-end justify-content-between">
                            <div class="teacher__info">
-                              <h4>{{ user.first_name }} {{ user.last_name }}</h4>
-                              <span>{{ user.tutor.description }}</span>
+                              <h4>{{ tutor.user.first_name }} {{ tutor.user.last_name }}</h4>
+                              <span>{{ tutor.user.tutor.description }}</span>
                            </div>
                            <div class="teacher__rating">
                               <h5>Review:</h5>
@@ -73,7 +73,7 @@
                         </div>
                         <div class="teacher__bio">
                            <h3>Short Bio</h3>
-                           <p>{{ user.tutor.description }}</p>
+                           <p>{{ tutor.user.tutor.description }}</p>
                         </div>
                         <div class="teacher__courses pt-55">
                            <div class="section__title-wrapper mb-30">

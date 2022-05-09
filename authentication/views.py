@@ -115,9 +115,10 @@ def error(request, exception):
 
 def instructor_details(request, pk):
     template = loader.get_template('authentication/instructor-details.html')
-    user = User.objects.get(id=pk)
+    tutor = Tutor.objects.get(id=pk)
+    # user = User.objects.get(id=pk)
     context = {
-        'user': user
+        'tutor': tutor
     }
     return HttpResponse(template.render(context, request))
 
@@ -205,7 +206,9 @@ def wishlist(request):
 def add_instructor(request):
     template = loader.get_template('authentication/add-instructor.html')
     context = {}
-    form = TutorCreationForm(request.POST or None)
+    form = TutorCreationForm(request.POST, request.FILES)
+    print('data', request.POST)
+    print('file', request.FILES)
     if form.is_valid():
         description = form.cleaned_data.get('description')
         password = form.cleaned_data.pop('password')
@@ -239,24 +242,24 @@ def student(request):
     return HttpResponse(template.render(context, request))
 
 
-@user_passes_test(admin_check)
-def add_instructor(request):
-    template = loader.get_template('authentication/add-instructor.html')
-    context = {}
-    form = TutorCreationForm(request.POST or None)
-    if form.is_valid():
-        description = form.cleaned_data.get('description')
-        password = form.cleaned_data.pop('password')
-        user = form.save()
-        group, _ = Group.objects.get_or_create(name='instructor')
-        user.groups.add(group)
-        user.set_password(password)
-        user.save()
-        Tutor.objects.create(user=user, description=description)
-        messages.success(request, "Tutor created successful.")
-        return redirect("authentication:instructor")
-    context['form']= form
-    return HttpResponse(template.render(context, request))
+# @user_passes_test(admin_check)
+# def add_instructor(request):
+#     template = loader.get_template('authentication/add-instructor.html')
+#     context = {}
+#     form = TutorCreationForm(request.POST or None)
+#     if form.is_valid():
+#         description = form.cleaned_data.get('description')
+#         password = form.cleaned_data.pop('password')
+#         user = form.save()
+#         group, _ = Group.objects.get_or_create(name='instructor')
+#         user.groups.add(group)
+#         user.set_password(password)
+#         user.save()
+#         Tutor.objects.create(user=user, description=description)
+#         messages.success(request, "Tutor created successful.")
+#         return redirect("authentication:instructor")
+#     context['form']= form
+#     return HttpResponse(template.render(context, request))
 
 
 @user_passes_test(admin_check)
