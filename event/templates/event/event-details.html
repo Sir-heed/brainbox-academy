@@ -31,7 +31,7 @@
                         <div class="course__teacher-3 d-flex align-items-center mr-70 mb-30">
                            {% for tutor in event.tutors.all %}
                            <div class="course__teacher-thumb-3 mr-15">
-                              <img src="{{ tutor.user.avatar }}" alt="">
+                              <img src="{{ tutor.user.avatar.url }}" alt="">
                            </div>
                            <div class="course__teacher-info-3">
                               <h5>Teacher</h5>
@@ -144,7 +144,7 @@
                               </div>
                               <div class="events__join-btn">
                                  {% if event.price > 0 %}
-                                    <a href="{% url 'authentication:contact' %}" class="e-btn e-btn-7 w-100">Enroll <i class="far fa-arrow-right"></i></a>
+                                    <a href="{% url 'event:event-payment' event.id %}" class="e-btn e-btn-7 w-100">Enroll <i class="far fa-arrow-right"></i></a>
                                  {% else %}
                                     <a href="{% url 'authentication:contact' %}" class="e-btn e-btn-7 w-100">Enroll For Free<i class="far fa-arrow-right"></i></a>
                                  {% endif %}

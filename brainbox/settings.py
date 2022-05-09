@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 import os
+import cloudinary
 from pathlib import Path
 from decouple import config
 
@@ -25,8 +26,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = False
+DEBUG = True
+# DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -135,6 +136,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Extra lookup directories for collectstatic to find static files
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
+)
+
+cloudinary.config( 
+  cloud_name = "brainbox-academy", 
+  api_key = "333186587588876", 
+  api_secret = "lA9IuSzy2PUVZMW0UqgmMiHGbYY" 
 )
 
 import dj_database_url 

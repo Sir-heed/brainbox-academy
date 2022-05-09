@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from cloudinary.models import CloudinaryField
 from django.core.validators import RegexValidator
 
 from .managers import CustomUserManager
@@ -7,7 +8,8 @@ from .managers import CustomUserManager
 # Create your models here.
 class User(AbstractUser):
     username = models.CharField(max_length=50, null=True)
-    avatar = models.ImageField(null=True, upload_to='profile/')
+    # avatar = models.ImageField(null=True, upload_to='profile/')
+    avatar = CloudinaryField('profile', null=True)
     email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=15)
     last_name = models.CharField(max_length=15)
